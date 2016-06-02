@@ -7,7 +7,7 @@ This is a simple example of using Roslyn to compile some code from a string,
  
 ## Dependencies
 This was written to work with [.NET Core RC2](https://github.com/dotnet/core/releases/tag/v1.0.0-rc2). 
-In order to resolve the prerelease dependencies, you'll have to add the `aspnetvidev` myget feed. 
+In order to resolve the prerelease dependencies, you'll have to add the `aspnetcidev` myget feed. 
 You can do so by adding or modifying the
 [`~/.config/NuGet/NuGet.Config`](https://docs.nuget.org/consume/nuget-config-file) 
 file (on mac) to include the `AspNetCiDev` key listed below:
