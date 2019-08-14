@@ -36,10 +36,16 @@ namespace ConsoleApplication
             SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(codeToCompile);
             
             string assemblyName = Path.GetRandomFileName();
-            MetadataReference[] references = new MetadataReference[]
-            {
-                MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location)
+            var refPaths = new [] {
+                typeof(System.Object).GetTypeInfo().Assembly.Location,
+                typeof(Console).GetTypeInfo().Assembly.Location,
+                Path.Combine(Path.GetDirectoryName(typeof(System.Runtime.GCSettings).GetTypeInfo().Assembly.Location), "System.Runtime.dll")
             };
+            MetadataReference[] references = refPaths.Select(r => MetadataReference.CreateFromFile(r)).ToArray();
+
+            Write("Adding the following references");
+            foreach(var r in refPaths)
+                Write(r);
 
             Write("Compiling ...");
             CSharpCompilation compilation = CSharpCompilation.Create(
